@@ -27,18 +27,19 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: auto;
-  scroll-padding-top: 1rem;
-}
-
-body {
+html, body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.6;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: 1rem;
 }
 
 ::selection {
@@ -90,6 +91,8 @@ a:focus-visible {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   overflow-x: clip;
   padding-bottom: var(--space-6);
 }
@@ -100,13 +103,15 @@ main {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.35;
 }
 
 /* Site Header */
 .site-header {
+  position: relative;
+  z-index: 20;
   background-color: rgba(21, 22, 31, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -308,6 +313,8 @@ main {
 
 /* Footer */
 .site-footer {
+  position: relative;
+  z-index: 1;
   border-top: 1px solid var(--color-border);
   padding-block: var(--space-4);
   background-color: var(--color-surface);
@@ -408,7 +415,7 @@ main {
   .hero-intro {
     clip-path: none !important;
   }
-  .g-copy, #bg-canvas {
+  .g-copy {
     display: none !important;
   }
 }

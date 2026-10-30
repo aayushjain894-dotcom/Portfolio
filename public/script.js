@@ -177,20 +177,20 @@ updateNav();
 const canvas = document.getElementById('bg-canvas');
 const toggleBtn = document.getElementById('anim-toggle');
 
-if (canvas && !reduce) {
+if (canvas) {
   const ctx = canvas.getContext('2d');
   let animationRunning = true;
   let drops = [];
   const chars = '010101010101010123456789ABCDEF';
-  const fontSize = 15;
+  const fontSize = 16;
   let lastTime = 0;
-  const fpsInterval = 45; // ~22 fps for authentic terminal cadence and minimal battery/CPU use
+  const fpsInterval = 40; // ~25 fps for smooth, authentic cyber terminal stream
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const columns = Math.floor(canvas.width / fontSize);
-    drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -50));
+    drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -30));
   }
 
   resizeCanvas();
