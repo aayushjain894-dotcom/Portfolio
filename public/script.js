@@ -173,3 +173,76 @@ if (location.hash.length > 1) {
 }
 updateNav();
 
+// 6. Cyber Binary Background Animation
+const canvas = document.getElementById('bg-canvas');
+const toggleBtn = document.getElementById('anim-toggle');
+
+if (canvas && !reduce) {
+  const ctx = canvas.getContext('2d');
+  let animationRunning = true;
+  let drops = [];
+  const chars = '010101010101010123456789ABCDEF';
+  const fontSize = 15;
+  let lastTime = 0;
+  const fpsInterval = 45; // ~22 fps for authentic terminal cadence and minimal battery/CPU use
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const columns = Math.floor(canvas.width / fontSize);
+    drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -50));
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function drawMatrix(timestamp) {
+    if (!animationRunning) return;
+    requestAnimationFrame(drawMatrix);
+
+    if (timestamp - lastTime < fpsInterval) return;
+    lastTime = timestamp;
+
+    ctx.fillStyle = 'rgba(10, 11, 14, 0.12)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = `${fontSize}px monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+
+      if (Math.random() > 0.88) {
+        ctx.fillStyle = '#00E5FF';
+      } else {
+        ctx.fillStyle = '#007A99';
+      }
+
+      ctx.fillText(char, x, y);
+
+      if (y > canvas.height && Math.random() > 0.985) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  requestAnimationFrame(drawMatrix);
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      animationRunning = !animationRunning;
+      toggleBtn.textContent = animationRunning ? 'Matrix: ON' : 'Matrix: OFF';
+      toggleBtn.setAttribute('aria-label', animationRunning ? 'Pause background animation' : 'Resume background animation');
+      if (animationRunning) {
+        requestAnimationFrame(drawMatrix);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    });
+  }
+} else if (toggleBtn) {
+  toggleBtn.style.display = 'none';
+}
+

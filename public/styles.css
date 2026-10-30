@@ -1,10 +1,10 @@
 :root {
-  --color-bg: #EEEFF1;
-  --color-surface: #E1E3E9;
-  --color-text: #0E0F14;
-  --color-muted: #454857;
-  --color-accent-text: #B0005A;
-  --color-border: #9A9EAD;
+  --color-bg: #0A0B0E;
+  --color-surface: #15161F;
+  --color-text: #F0F0F4;
+  --color-muted: #9DA1B4;
+  --color-accent-text: #00E5FF;
+  --color-border: #262837;
   --ch-a: #FF2E9A;
   --ch-b: #00B7DB;
 
@@ -94,9 +94,22 @@ main {
   padding-bottom: var(--space-6);
 }
 
+/* Background Matrix Canvas */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+}
+
 /* Site Header */
 .site-header {
-  background-color: var(--color-surface);
+  background-color: rgba(21, 22, 31, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -106,6 +119,38 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-1);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.anim-toggle {
+  background: transparent;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.anim-toggle:hover {
+  color: var(--color-text);
+  border-color: var(--ch-b);
+}
+
+.anim-toggle:focus-visible {
+  outline: 2px solid var(--ch-b);
+  outline-offset: 2px;
 }
 
 .brand {
@@ -363,7 +408,7 @@ main {
   .hero-intro {
     clip-path: none !important;
   }
-  .g-copy {
+  .g-copy, #bg-canvas {
     display: none !important;
   }
 }
