@@ -8,7 +8,7 @@
   --ch-a: #FF2E9A;
   --ch-b: #00B7DB;
 
-  --font-display: "Syne", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, sans-serif;
 
   --snap: cubic-bezier(0.8, 0, 1, 0.5);
@@ -50,9 +50,9 @@ body {
 h1, h2, h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
 p {
@@ -114,7 +114,7 @@ main {
   min-height: 44px;
   color: var(--color-text);
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.125rem;
   text-decoration: none;
 }
@@ -171,8 +171,8 @@ main {
 }
 
 .hero-name {
-  font-size: clamp(2.5rem, 9vw, 6.5rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  line-height: 1.15;
 }
 
 @keyframes scan-in {
@@ -204,7 +204,7 @@ main {
 }
 
 .section-title {
-  font-size: clamp(1.875rem, 6vw, 3.25rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   margin-bottom: var(--space-3);
 }
 
